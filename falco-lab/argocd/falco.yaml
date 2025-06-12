@@ -8,15 +8,16 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: falco-lab
-  sources:
-    - chart: falco
-      repoURL: https://falcosecurity.github.io/charts
-      helm:
-        releaseName: falco-lab
-        value: |
-          falco:
-            jsonOutput: true
-            logLevel: info
+  source:
+    chart: falco
+    repoURL: https://falcosecurity.github.io/charts
+    targetRevision: v0.41.1
+    helm:
+      releaseName: falco-lab
+      value: |
+        falco:
+          jsonOutput: true
+          logLevel: info
   syncPolicy:
     automated:
       prune: true
