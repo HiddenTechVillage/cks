@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: falco-lab
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: falco-lab
+  sources:
+    - chart: falco
+      repoURL: https://falcosecurity.github.io/charts
+      helm:
+        releaseName: falco-lab
+        value: |
+          falco:
+            jsonOutput: true
+            logLevel: info
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

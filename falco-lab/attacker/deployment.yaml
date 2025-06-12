@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mem-attacker
+  labels:
+    app: mem-attacker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mem-attacker
+  template:
+    metadata:
+      labels:
+        app: mem-attacker
+    spec:
+      containers:
+        - name: attacker
+          image: busybox
+          command: [ "sh", "-c", "cat /dev/mem || sleep 3600" ]
+          securityContext:
+            privileged: true
