@@ -8,7 +8,7 @@ spec:
   sources:
       - repoURL: https://github.com/HiddenTechVillage/cks.git
         targetRevision: HEAD
-        path: falco-lab/argocd
+        path: falco-lab/argocd/
         directory:
           recurse: true
   destination:
